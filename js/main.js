@@ -1,15 +1,16 @@
 let newItemCounter = 1;
 let ourButton = document.getElementById('add-button');
-let ourList = document.getElementById('our-list');
 let ourHeadline = document.getElementById('our-headline');
-let listItems = document.getElementById('our-list').getElementsByClassName('list-item');
+
+let ourList = document.querySelector('#our-list');
+let listItems = document.querySelectorAll('#our-list li');
 
 // Add a listener in each list item
 ourList.addEventListener('click', activateItem);
 
 // Function to change the headline <h1> content by the list item content
 function activateItem(e) {
-    if (e.target.nodeName == "DIV") {
+    if (e.target.nodeName == "LI") {
         ourHeadline.innerHTML = e.target.innerText;
 
         // Remove a class from all list items...
@@ -27,18 +28,8 @@ ourButton.addEventListener('click', createNewItem);
 
 function createNewItem() {
     ourList.innerHTML += `
-        <div class='list-item'>
-            <span>New item ${newItemCounter}</span>
-            <a class="button is-primary">
-                <span class="icon is-small">
-                    <i class="fas fa-pen"></i>        
-                </span>
-            </a>
-            <a class="button is-danger">
-                <span class="icon is-small">
-                    <i class="fas fa-trash"></i>
-                </span>
-            </a>
-        </div>`;
+        <li class='list-item'>
+            New item ${newItemCounter}
+        </li>`;
     newItemCounter++;
 }
